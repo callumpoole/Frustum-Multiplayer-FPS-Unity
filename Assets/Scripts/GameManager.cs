@@ -49,4 +49,13 @@ public class GameManager : MonoBehaviour {
     #endregion
 
 
+
+    #region HelperFunctions
+    public static void recursivelyApplyLayer(GameObject go, int layer) {
+        go.layer = layer;
+        foreach (Transform t in go.transform) {
+            recursivelyApplyLayer(t.gameObject, layer);
+        }
+    }
+    #endregion
 }
