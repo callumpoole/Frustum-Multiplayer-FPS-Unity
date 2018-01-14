@@ -11,7 +11,7 @@ public class PlayerShoot : NetworkBehaviour {
     [SerializeField]
     private LayerMask mask;
 
-    private PlayerWeapon currentWeapon;
+    private PlayerWeapon currentWeapon; 
     private WeaponManager wm;
 
     void Start() {
@@ -27,7 +27,7 @@ public class PlayerShoot : NetworkBehaviour {
 
 
     void Update() {
-        currentWeapon = wm.GetCurrentWeapon();
+        currentWeapon = wm.GetCurrentWeapon(); 
         if (currentWeapon.fireRate <= 0) {
             if (Input.GetButtonDown("Fire1")) {
                 Shoot();
@@ -41,13 +41,41 @@ public class PlayerShoot : NetworkBehaviour {
         }
     }
 	
+    //Called wether of not anything is hit or not
+    [Command]
+    void CmdOnShoot() {
+        RpcDoShootEffect();
+    }
+
+    [ClientRpc]
+    void RpcDoShootEffect() { //When one person Shoots, show visually to all clients
+        wm.GetCurrentWeaponGraphics().weaponGFX.Play();
+    }
+
+    [Command]
+    void CmdOnHit(Vector3 pos, Vector3 normal) {
+        RpcDoHitEffect(pos, normal);
+    }
+
+    [ClientRpc]
+    void RpcDoHitEffect(Vector3 pos, Vector3 normal) { //When one person Shoots, show visually to all clients
+        //Could use Object Pooling for better efficiency
+        GameObject hitGFX = Instantiate(wm.GetCurrentWeaponGraphics().hitEffectPrefab, pos, Quaternion.LookRotation(normal));
+        Destroy(hitGFX, 2f);
+    }
+
     [Client]
 	void Shoot() {
+        if (!isLocalPlayer)
+            return;
+        CmdOnShoot();
+
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, currentWeapon.range, mask)) {
             if (hit.collider.tag == PLAYER_TAG) {
                 CmdPlayerShot(hit.collider.GetComponent<PlayerSetup>().GetNetworkID(), currentWeapon.damage);
             }
+            CmdOnHit(hit.point, hit.normal);
         }
     }
 

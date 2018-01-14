@@ -424,6 +424,7 @@ MonoBehaviour:
     name: Fists
     damage: 30
     range: 100
+    fireRate: 0
     GFX: {fileID: 1591201848445518, guid: 386d8fa2e726df14aa3a1865847832d2, type: 2}
     offset: {x: -0.25, y: 0, z: 0}
     rotOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -459,7 +460,6 @@ MonoBehaviour:
   - {fileID: 81704044077856694}
   - {fileID: 20580070722399434}
   - {fileID: 81498969956280420}
-  - {fileID: 114253936141983650}
   - {fileID: 20306905718616238}
   remoteLayerName: RemotePlayer
   GUIPrefab: {fileID: 1761721542904256, guid: c204017d5cbc76544b619656e591e9bf, type: 2}
@@ -579,6 +579,9 @@ MonoBehaviour:
   disableOnDeath:
   - {fileID: 114158415474119740}
   - {fileID: 114253936141983650}
+  disableGameObjectsOnDeath:
+  - {fileID: 1696097041435278}
+  - {fileID: 1370052760682330}
 --- !u!124 &124258750517419184
 Behaviour:
   m_ObjectHideFlags: 1

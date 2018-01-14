@@ -8,12 +8,21 @@ public class GameManager : MonoBehaviour {
 
     public MatchSettings matchSettings;
 
+    [SerializeField]
+    private GameObject sceneCam;
+
     void Awake() {
         if(inst != null) {
             Debug.LogError("Multiple GameManager(s) in scene");
         } else {
             inst = this;
         }
+    }
+
+    public void SetSceneCameraActive(bool isActive) {
+        if (sceneCam == null)
+            return;
+        sceneCam.SetActive(isActive);
     }
 
     #region Player Tracking
@@ -49,13 +58,4 @@ public class GameManager : MonoBehaviour {
     #endregion
 
 
-
-    #region HelperFunctions
-    public static void recursivelyApplyLayer(GameObject go, int layer) {
-        go.layer = layer;
-        foreach (Transform t in go.transform) {
-            recursivelyApplyLayer(t.gameObject, layer);
-        }
-    }
-    #endregion
 }

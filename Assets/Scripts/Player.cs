@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(PlayerSetup))]
 public class Player : NetworkBehaviour {
     [SyncVar]
     private bool _isDead = false;
@@ -18,6 +19,9 @@ public class Player : NetworkBehaviour {
     [SerializeField]
     private Behaviour[] disableOnDeath;
     private bool[] wasEnabled;
+    [SerializeField]
+    private GameObject[] disableGameObjectsOnDeath;
+
 
     // Use this for initialization
     public void Setup() {
@@ -33,7 +37,7 @@ public class Player : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
         if (Input.GetKeyDown(KeyCode.K))
-            RpcTakeDamage(789);
+            RpcTakeDamage(7899999);
     }
     public void SetDefaults() {
         isDead = false;
@@ -41,9 +45,17 @@ public class Player : NetworkBehaviour {
         for (int i = 0; i < disableOnDeath.Length; i++) {
             disableOnDeath[i].enabled = wasEnabled[i];
         }
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++) {
+            disableGameObjectsOnDeath[i].SetActive(true);
+        }
         Collider col = GetComponent<Collider>();
         if (col != null)
             col.enabled = true;
+        //Switch Camera
+        if (isLocalPlayer) {
+            GameManager.inst.SetSceneCameraActive(false);
+            GetComponent<PlayerSetup>().GUIInst.SetActive(true);
+        }
     }
     [ClientRpc]
     public void RpcTakeDamage(int damage) {
@@ -59,10 +71,18 @@ public class Player : NetworkBehaviour {
         for (int i = 0; i < disableOnDeath.Length; i++) {
             disableOnDeath[i].enabled = false;
         }
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++) {
+            disableGameObjectsOnDeath[i].SetActive(false);
+        }
         Collider col = GetComponent<Collider>();
         if (col != null)
             col.enabled = false;
 
+        //Switch Camera
+        if (isLocalPlayer) {
+            GameManager.inst.SetSceneCameraActive(true);
+            GetComponent<PlayerSetup>().GUIInst.SetActive(false);
+        }
 
         Debug.Log(transform.name + " is Dead");
 
