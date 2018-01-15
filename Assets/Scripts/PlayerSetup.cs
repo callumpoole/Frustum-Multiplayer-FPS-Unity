@@ -25,9 +25,12 @@ public class PlayerSetup : NetworkBehaviour {
             AssignRemoteLayer();
         } else {
             GUIInst = Instantiate(GUIPrefab);
+            GUIInst.name = GUIPrefab.name;
+
+            
+            GetComponent<Player>().SetupPlayer();
         }
         networkID = GetComponent<NetworkIdentity>().netId.Value;
-        GetComponent<Player>().Setup();
     }
 
     public override void OnStartClient() {
@@ -46,7 +49,8 @@ public class PlayerSetup : NetworkBehaviour {
     }
 
     void OnDisable() {
-        GameManager.inst.SetSceneCameraActive(true);
+        if (isLocalPlayer)
+            GameManager.inst.SetSceneCameraActive(true);
         GameManager.UnRegisterPlayer(networkID);
         Destroy(GUIInst);
     }

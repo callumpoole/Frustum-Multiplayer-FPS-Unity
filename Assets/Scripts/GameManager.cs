@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour {
         string playerID = PLAYER_ID_PREFIX + netID;
         players.Add(netID, player);
         player.transform.name = playerID;
+        Debug.Log("Registered Player:" + playerID);
     }
 
     public static Player GetPlayer(uint id) {
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public static void UnRegisterPlayer(uint netID) {
+        Debug.Log("Unregistered Player:" + netID);
         players.Remove(netID);
     }
 
