@@ -120,6 +120,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+1495e4581e89e6c914616aac5772e486 Assembly-CSharp.dll:.HostGame
 4d74e5e9e4028a5b3e75c784f68afcf2 Assembly-CSharp.dll:.WeaponManager
 7efe7c00576e0366949d8dbab13bd157 Assembly-CSharp.dll:.GameManager
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
@@ -158,3 +159,5 @@ ab232dc3d94359ca42eabb9c72cbbb82 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 c9576c6a51e2e71bc5caab85a96801e8 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.SmokeParticles
 fa78d5a94627235c4879d85032278d52 Assembly-CSharp.dll:.Player
 521b2d9ec7b9e06b1cea7ba44f80d57a Assembly-CSharp.dll:.PlayerController
+323bc9520dab84ac1ad550797683f2fa Assembly-CSharp.dll:.JoinGame
+7ebdc70bc0f6bdf5d5088dfa00250254 Assembly-CSharp.dll:.RoomListItem
