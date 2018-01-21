@@ -46,17 +46,17 @@ public class GameManager : MonoBehaviour {
         players.Remove(netID);
     }
 
-    //void OnGUI() { 
-    //    GUILayout.BeginArea(new Rect(20, 20, 200, 500));
-    //    GUILayout.BeginVertical();
-    //    foreach(uint id in players.Keys) {
-    //        GUILayout.Label(PLAYER_ID_PREFIX + id + "  -  " + 
-    //            players[id].transform.name + "  -  " + 
-    //            players[id].GetComponent<Player>().GetCurrentHealth());
-    //    }
-    //    GUILayout.EndArea();
-    //    GUILayout.EndVertical();
-    //}
+    void OnGUI() { 
+        GUILayout.BeginArea(new Rect(20, 20, 200, 500));
+        GUILayout.BeginVertical();
+        foreach(uint id in players.Keys) {
+            GUILayout.Label(PLAYER_ID_PREFIX + id + "  -  " + 
+                players[id].transform.name + "  -  " + 
+                players[id].GetComponent<Player>().GetCurrentHealth());
+        } 
+        GUILayout.EndVertical();
+        GUILayout.EndArea();
+    }
     #endregion
 
 
