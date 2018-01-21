@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (PauseMenu.isPaused)
+            return;
+
         float xMov = Input.GetAxisRaw("Horizontal");
         float zMov = Input.GetAxisRaw("Vertical");
         Vector3 hor = transform.right * xMov;
