@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField]
-    private float speed = 5f;
+
     [SerializeField]
     private float lookSensitivity = 3f;
+
 
     PlayerMotor motor;
     
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 hor = transform.right * xMov;
         Vector3 ver = transform.forward * zMov;
 
-        Vector3 vel = (hor + ver).normalized * speed;
+        Vector3 vel = (hor + ver).normalized;
         motor.Move(vel);
 
         float yRot = Input.GetAxisRaw("Mouse X");
@@ -37,5 +37,9 @@ public class PlayerController : MonoBehaviour {
         float xRot = Input.GetAxisRaw("Mouse Y");
         float camRot = xRot * lookSensitivity;
         motor.RotateCamera(camRot);
+
+        if (Input.GetButtonDown("Jump"))
+            motor.Jump();
+        motor.IsHoldingJump(Input.GetButton("Jump"));
     }
 }

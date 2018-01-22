@@ -18,7 +18,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 9ca6347af5ceb6b0d1c105af31b6722e UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 7ba1e84ad3d2d8813486668e75f842ce Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.ParticleSystemMultiplier
 430c1729d7a445aa5df470ced463fca9 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.ExplosionPhysicsForce
-5745ed3c5e89749ff5a935ee82d541f3 Assembly-CSharp.dll:.PlayerMotor
+39917c18452e05138bf3170e0987c6c3 Assembly-CSharp.dll:.PlayerMotor
 323bc9520dab84ac1ad550797683f2fa Assembly-CSharp.dll:.JoinGame
 7ebdc70bc0f6bdf5d5088dfa00250254 Assembly-CSharp.dll:.RoomListItem
 3b945a83fa61133bbb7c61d4d7012fd9 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.Hose
@@ -163,4 +163,4 @@ ab232dc3d94359ca42eabb9c72cbbb82 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 c9576c6a51e2e71bc5caab85a96801e8 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.SmokeParticles
 fa78d5a94627235c4879d85032278d52 Assembly-CSharp.dll:.Player
-521b2d9ec7b9e06b1cea7ba44f80d57a Assembly-CSharp.dll:.PlayerController
+e9563abd11df730455d69209d4530e2b Assembly-CSharp.dll:.PlayerController
