@@ -446,7 +446,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617391993290534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.119794, y: -0.000000022351742, z: -1.3531762}
+  m_LocalPosition: {x: -2.7518115, y: -0.000000022351742, z: -0.6083674}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4598342633862254}
@@ -755,7 +755,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100008, guid: 4bfa570efafcfd1429e97d8f66abf977, type: 3}
+  - {fileID: 2100000, guid: b85106a13cad3684884701ae9540f4eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -891,7 +891,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100012, guid: 4bfa570efafcfd1429e97d8f66abf977, type: 3}
+  - {fileID: 2100000, guid: b85106a13cad3684884701ae9540f4eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1015,12 +1015,12 @@ MonoBehaviour:
   weaponHolder: {fileID: 4150880730249256}
   weaponCam: {fileID: 0}
   defaultWeapon:
-    name: Fists
+    name: Sword
     damage: 30
     range: 100
     fireRate: 0
-    GFX: {fileID: 1591201848445518, guid: 386d8fa2e726df14aa3a1865847832d2, type: 2}
-    offset: {x: -0.25, y: 0, z: 0}
+    GFX: {fileID: 1231631601303790, guid: 7c45190ee8b0aa248ab94d6e02375f33, type: 2}
+    offset: {x: 0.1, y: -0.3, z: 0.4}
     rotOffset: {x: 0, y: 0, z: 0, w: 0}
     FOV: 0
 --- !u!114 &114158415474119740
@@ -1055,6 +1055,11 @@ MonoBehaviour:
   - {fileID: 20580070722399434}
   - {fileID: 81498969956280420}
   - {fileID: 20306905718616238}
+  playerSkins:
+  - {fileID: 2100000, guid: 34dc6d36870e50949a8d5cbffbf8e478, type: 2}
+  - {fileID: 2100000, guid: 703cfe041518c7a42b386b28dd35eb1a, type: 2}
+  - {fileID: 2100000, guid: 191ca2331a62cf7418c4280f07f5a17f, type: 2}
+  - {fileID: 2100000, guid: 0f285f227fe52e84791418e9f1fb2f9b, type: 2}
   remoteLayerName: RemotePlayer
   GUIPrefab: {fileID: 1761721542904256, guid: c204017d5cbc76544b619656e591e9bf, type: 2}
   GUIInst: {fileID: 0}

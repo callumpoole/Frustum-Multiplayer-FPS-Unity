@@ -8,7 +8,6 @@ public class Player : NetworkBehaviour {
     private bool _isDead = false;
     public bool isDead { get { return _isDead; } protected set { _isDead = value; } }
 
-
     [SerializeField]
     private int maxHealth = 100;
 
@@ -30,11 +29,9 @@ public class Player : NetworkBehaviour {
             //Switch Camera
             GameManager.inst.SetSceneCameraActive(false);
             GetComponent<PlayerSetup>().GUIInst.SetActive(true);
-        }
-        
-
-
+        } 
         CmdBroadcastNewPlayerSetup();
+
     }
 
     [Command]

@@ -35,10 +35,17 @@ public class GameManager : MonoBehaviour {
         players.Add(netID, player);
         player.transform.name = playerID;
         Debug.Log("Registered Player:" + playerID);
+        //OnPlayerJoin(netID, player);
     }
 
     public static Player GetPlayer(uint id) {
         return players[id];
+    }
+
+    public static Player[] GetAllPlayers() {
+        Player[] ps = new Player[players.Count];
+        players.Values.CopyTo(ps, 0);
+        return ps;
     }
 
     public static void UnRegisterPlayer(uint netID) {
@@ -59,5 +66,7 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
+    //private static void OnPlayerJoin(uint netID, Player player) {
 
+    //}
 }
