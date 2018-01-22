@@ -51,7 +51,9 @@ public class PlayerShoot : NetworkBehaviour {
 
     [ClientRpc]
     void RpcDoShootEffect() { //When one person Shoots, show visually to all clients
-        wm.GetCurrentWeaponGraphics().weaponGFX.Play();
+        WeaponGraphics wg = wm.GetCurrentWeaponGraphics();
+        wg.weaponGFX.Play();
+        wg.anim.Play("ShootAnim");
     }
 
     [Command]

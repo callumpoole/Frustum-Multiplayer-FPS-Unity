@@ -71,6 +71,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4954910386301432}
   - component: {fileID: 114019190961530866}
+  - component: {fileID: 95342552437058104}
+  - component: {fileID: 111195672432568704}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -645,6 +647,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1752586564953486}
   m_Mesh: {fileID: 4300004, guid: feac6e89be2ad5341859b236b9eb37da, type: 3}
+--- !u!95 &95342552437058104
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231631601303790}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2cc10437fa9aa946b2a0357558abc22, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &111195672432568704
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231631601303790}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: e60c9020a2fb8354bb3df4fe72808398, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114019190961530866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -660,3 +693,4 @@ MonoBehaviour:
     type: 2}
   hitEffectPrefab: {fileID: 1000923166740684, guid: 859da9c898d81934fb46497ccfeb1faf,
     type: 2}
+  anim: {fileID: 0}

@@ -15,6 +15,8 @@ public class WeaponManager : NetworkBehaviour {
     private PlayerWeapon currentWeapon;
     private WeaponGraphics currentWeaponGraphics;
 
+    
+
 	// Use this for initialization
 	void Start () {
         EquipWeapon(defaultWeapon); 
