@@ -163,4 +163,4 @@ ab232dc3d94359ca42eabb9c72cbbb82 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 c9576c6a51e2e71bc5caab85a96801e8 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.SmokeParticles
 fa78d5a94627235c4879d85032278d52 Assembly-CSharp.dll:.Player
-48bcd022996eb7c3faa68d44439e8946 Assembly-CSharp.dll:.PlayerController
+eb78263d055ec652ad310dcec19fa7b0 Assembly-CSharp.dll:.PlayerController

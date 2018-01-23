@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour {
     private Camera camWeapon;
     private PlayerGUI pGUI = null;
 
+    [SerializeField]
+    private KeyCode toggleCursorLock = KeyCode.C;
+    private bool shouldLockCursor = true;
+
     PlayerMotor motor;
     
 	// Use this for initialization
@@ -30,8 +34,18 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (PauseMenu.isPaused)
+        if (PauseMenu.isPaused) {
+            if (Cursor.lockState != CursorLockMode.None)
+                Cursor.lockState = CursorLockMode.None;
+            motor.Move(Vector3.zero);
+            motor.Rotate(Vector3.zero);
+            motor.RotateCamera(0f);
             return;
+        }
+        if (shouldLockCursor && Cursor.lockState != CursorLockMode.Locked)
+            Cursor.lockState = CursorLockMode.Locked;
+        else if (!shouldLockCursor)
+            Cursor.lockState = CursorLockMode.None;
 
         float xMov = Input.GetAxisRaw("Horizontal");
         float zMov = Input.GetAxisRaw("Vertical");
@@ -62,6 +76,9 @@ public class PlayerController : MonoBehaviour {
             cam3rd.enabled = !isFirstCam;           //Toggle 3rd cam
             pGUI.SettingTo1stPerson(isFirstCam);    //Toggle GUI appropriately
         }
+
+        if (Input.GetKeyDown(toggleCursorLock))
+            shouldLockCursor = !shouldLockCursor;
     }
 }
 

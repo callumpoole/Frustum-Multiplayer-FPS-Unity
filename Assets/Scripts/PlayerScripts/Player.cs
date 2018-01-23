@@ -54,8 +54,6 @@ public class Player : NetworkBehaviour {
     void Update() {
         if (!isLocalPlayer)
             return;
-        if (Input.GetKeyDown(KeyCode.K))
-            RpcTakeDamage(7899999);
     }
 
     [ClientRpc]

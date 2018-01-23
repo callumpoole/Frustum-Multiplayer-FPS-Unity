@@ -4,9 +4,11 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.Networking.Types;
 using System.Collections.Generic;
-using System;
+using System.Collections;
 
 public class JoinGame : MonoBehaviour {
+
+    const int WAIT_FOR_JOIN_COUNTDOWN = 10;
 
     List<GameObject> roomList = new List<GameObject>();
     private NetworkManager networkManager;
@@ -19,9 +21,8 @@ public class JoinGame : MonoBehaviour {
 
     void Start () {
         networkManager = NetworkManager.singleton;
-        if (networkManager.matchMaker == null) {
-            networkManager.StartMatchMaker();
-        }
+        if (networkManager.matchMaker == null) 
+            networkManager.StartMatchMaker(); 
         RefreshRoomList();
 	}
 
@@ -29,6 +30,8 @@ public class JoinGame : MonoBehaviour {
 
     public void RefreshRoomList() {
         ClearRoomList();
+        if (networkManager.matchMaker == null) 
+            networkManager.StartMatchMaker(); 
         networkManager.matchMaker.ListMatches(0, 20, "", false, 0, 0, OnMatchList);
         status.text = "Loading...";
     }
@@ -63,9 +66,25 @@ public class JoinGame : MonoBehaviour {
 
     public void JoinRoom(MatchInfoSnapshot match) {
         networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
-        ClearRoomList();
-        status.text = "Joining...";
+        StartCoroutine(WaitForJoin());
     }
 
+    IEnumerator WaitForJoin() {
+        ClearRoomList();
+        int countDown = WAIT_FOR_JOIN_COUNTDOWN;
+        while (countDown > 0) {
+            status.text = "Joining... ("+countDown+")";
+            yield return new WaitForSeconds(1);
+            countDown--;
+        }
+        status.text = "Failed to Connect.";
+        MatchInfo match = networkManager.matchInfo;
+        if (match != null) {
+            MatchInfo matchInfo = networkManager.matchInfo;
+            networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
+            networkManager.StopHost();
+        }
+        RefreshRoomList();
+    }
    
 }
