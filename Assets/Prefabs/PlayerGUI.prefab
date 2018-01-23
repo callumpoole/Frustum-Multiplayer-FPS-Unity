@@ -145,6 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1918269361039208}
+  hideWhen3rdPerson:
+  - {fileID: 1240041692756188}
+  showWhen3rdPerson: []
 --- !u!114 &114166969053443044
 MonoBehaviour:
   m_ObjectHideFlags: 1

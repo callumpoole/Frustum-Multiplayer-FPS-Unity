@@ -9,13 +9,24 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float lookSensitivity = 3f;
 
+    [SerializeField]
+    private KeyCode changeCamKey = KeyCode.V;
+    public bool isFirstCam { get; private set; }    //Set as TRUE in START()
+    [SerializeField]
+    private Camera cam1st;
+    [SerializeField]
+    private Camera cam3rd;
+    [SerializeField]
+    private Camera camWeapon;
+    private PlayerGUI pGUI = null;
 
     PlayerMotor motor;
     
 	// Use this for initialization
 	void Start () {
         motor = GetComponent<PlayerMotor>();
-	}
+        isFirstCam = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,5 +52,16 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Jump"))
             motor.Jump();
         motor.IsHoldingJump(Input.GetButton("Jump"));
+
+        if (Input.GetKeyDown(changeCamKey)) {
+            if (pGUI == null)
+                pGUI = GetComponent<PlayerSetup>().GUIInst.GetComponent<PlayerGUI>();
+            isFirstCam = !isFirstCam;         //Toggle First Person Bool
+            cam1st.enabled = isFirstCam;            //Toggle 1st Cam
+            camWeapon.enabled = isFirstCam;         //Toggle Weapon Cam
+            cam3rd.enabled = !isFirstCam;           //Toggle 3rd cam
+            pGUI.SettingTo1stPerson(isFirstCam);    //Toggle GUI appropriately
+        }
     }
 }
+

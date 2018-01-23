@@ -4,18 +4,21 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerMotor : MonoBehaviour {
 
     [SerializeField]
     private Camera cam;
     [SerializeField]
-    private Camera cam_3rd;
+    private Camera cam3rd;
+
 
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
     private float cameraRotationX = 0f;
     private float currecntCameraRotationX = 0f;
+    private float currecntCamera3rdRotationX = 0f;
     [SerializeField]
     private float cameraRotationLimit = 85f;
     private bool shouldJump = false;
@@ -26,16 +29,22 @@ public class PlayerMotor : MonoBehaviour {
     [SerializeField]
     private float jumpVel = 5f;
     [SerializeField]
+    private bool holdForLongerJump = true;
+    [SerializeField]
+    private bool quickerFall = true;
+    [SerializeField]
     private float fallMultiplier = 2.5f;
     [SerializeField]
     private float lowJumpMultiplier = 2f;
 
+    private PlayerController pc;
     private Rigidbody rb;
     public bool isGrounded;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+        pc = GetComponent<PlayerController>();
     }
      
     void OnCollisionStay(Collision collisionInfo) {
@@ -75,18 +84,29 @@ public class PlayerMotor : MonoBehaviour {
     }
 
     void PerformMovement() {
-        if (velocity != Vector3.zero) {
-            rb.MovePosition(rb.position + velocity * Time.deltaTime);
-        }
+        if (velocity != Vector3.zero)
+            rb.MovePosition(rb.position + velocity * Time.deltaTime); 
     }
 
     void PerformRotation() {
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
         if (cam != null) {
-            currecntCameraRotationX -= cameraRotationX;
-            currecntCameraRotationX = Mathf.Clamp(currecntCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
+            if (pc.isFirstCam) {
+                currecntCameraRotationX -= cameraRotationX;
+                currecntCameraRotationX = Mathf.Clamp(currecntCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
+            } else
+                currecntCameraRotationX = 0; 
             cam.transform.localEulerAngles = new Vector3(currecntCameraRotationX, 0f, 0f);
         }
+        if (cam3rd != null) {
+            if (!pc.isFirstCam) {
+                currecntCamera3rdRotationX -= cameraRotationX / 4;
+                currecntCamera3rdRotationX = Mathf.Clamp(currecntCamera3rdRotationX, -cameraRotationLimit / 4, cameraRotationLimit / 4);
+            } else
+                currecntCamera3rdRotationX = 0; 
+            cam3rd.transform.localEulerAngles = new Vector3(currecntCamera3rdRotationX, 0f, 0f);
+        }
+        
     }
 
     void PerformJump() {
@@ -94,10 +114,9 @@ public class PlayerMotor : MonoBehaviour {
             rb.velocity = Vector3.up * jumpVel;
             shouldJump = false;
         }
-        if (rb.velocity.y < 0) {
+        if (quickerFall && rb.velocity.y < 0)
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        } else if (rb.velocity.y > 0 && !isHoldingJump) {
-            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        }
+        else if (holdForLongerJump && rb.velocity.y > 0 && !isHoldingJump)
+            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime; 
     } 
 }

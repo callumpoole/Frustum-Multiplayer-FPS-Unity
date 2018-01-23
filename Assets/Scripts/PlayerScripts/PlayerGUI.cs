@@ -6,9 +6,21 @@ public class PlayerGUI : MonoBehaviour {
 
     [SerializeField] 
     GameObject pauseMenu;
-	
-	// Update is called once per frame
-	void Update () {
+
+    [SerializeField]
+    private GameObject[] hideWhen3rdPerson;
+    [SerializeField]
+    private GameObject[] showWhen3rdPerson;
+
+    public void SettingTo1stPerson(bool _1st) {
+        foreach (GameObject g in hideWhen3rdPerson)
+            g.SetActive(!_1st);
+        foreach (GameObject g in showWhen3rdPerson)
+            g.SetActive(_1st); 
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (Input.GetKeyDown(KeyCode.Escape)){
             TogglePauseMenu();
         }
