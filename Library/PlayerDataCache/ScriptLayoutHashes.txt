@@ -164,3 +164,4 @@ ab232dc3d94359ca42eabb9c72cbbb82 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 c9576c6a51e2e71bc5caab85a96801e8 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.SmokeParticles
 fa78d5a94627235c4879d85032278d52 Assembly-CSharp.dll:.Player
 eb78263d055ec652ad310dcec19fa7b0 Assembly-CSharp.dll:.PlayerController
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.KillZone

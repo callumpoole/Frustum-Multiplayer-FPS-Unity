@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager inst;
+    private bool showControls = true;
 
-    public MatchSettings matchSettings;
+    public MatchSettings matchSettings; 
+    public GameObject tempObjects;
 
     [SerializeField]
     private GameObject sceneCam;
@@ -17,6 +19,10 @@ public class GameManager : MonoBehaviour {
         } else {
             inst = this;
         }
+    }
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.H))
+            showControls = !showControls;
     }
 
     public void SetSceneCameraActive(bool isActive) {
@@ -53,18 +59,51 @@ public class GameManager : MonoBehaviour {
         players.Remove(netID);
     }
 
-    void OnGUI() { 
-        GUILayout.BeginArea(new Rect(20, 20, 200, 500));
+
+    #endregion
+
+    #region GUI
+    void OnGUI() {
+        GUI.contentColor = Color.black;
+        DrawAllGUI(new Rect(21, 21, 400, 500));
+        GUI.contentColor = Color.white;
+        DrawAllGUI(new Rect(20, 20, 400, 500)); 
+    }
+    void DrawAllGUI(Rect r) {
+        GUILayout.BeginArea(r);
         GUILayout.BeginVertical();
-        foreach(uint id in players.Keys) {
-            GUILayout.Label(PLAYER_ID_PREFIX + id + "  -  " + 
-                players[id].transform.name + "  -  " + 
-                players[id].GetComponent<Player>().GetCurrentHealth());
-        } 
+        {
+            if (showControls) {
+                ControlsGUI();
+                GUILayout.Label("---------");
+            }
+            LobbyStatusGUI();
+        }
         GUILayout.EndVertical();
         GUILayout.EndArea();
     }
+
+    void ControlsGUI() {
+        GUILayout.Label("Pause - Esc");
+        GUILayout.Label("Move - WASD");
+        GUILayout.Label("Jump - Space");
+        GUILayout.Label("Attack - Mouse1");
+        GUILayout.Label("Block - Mouse2 (Coming soon)");
+        GUILayout.Label("Change Weapon - Mouse Wheel (Coming soon)");
+        GUILayout.Label("3rd Person - V");
+        GUILayout.Label("Cursor Lock - C");
+        GUILayout.Label("Hide These Controls - H");
+    }
+    void LobbyStatusGUI() {
+        foreach (uint id in players.Keys) {
+            GUILayout.Label(PLAYER_ID_PREFIX + id + "  -  " +
+                players[id].transform.name + "  -  " +
+                players[id].GetComponent<Player>().GetCurrentHealth());
+        }
+    }
+
     #endregion
+
 
     //private static void OnPlayerJoin(uint netID, Player player) {
 
