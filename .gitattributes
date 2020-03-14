@@ -1,0 +1,4 @@
+*.ASP linguist-detectable=false
+*.C# linguist-detectable=true
+*.asp linguist-detectable=false
+*.c# linguist-detectable=true
