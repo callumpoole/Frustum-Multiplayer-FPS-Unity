@@ -1,5 +1,1 @@
-*.ASP linguist-detectable=false
-*.C# linguist-detectable=true
-*.asp linguist-detectable=false
-*.c# linguist-detectable=true
-*.csharp linguist-detectable=true
+*.cs linguist-language=C#
